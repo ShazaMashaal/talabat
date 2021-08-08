@@ -65,7 +65,6 @@ class _LoginState extends State<Login> {
                   ),
                   CustomtextButton(
                     text: "Creat an account",
-                    Page: SignUp(),
                   ),
                 ],
               ),
