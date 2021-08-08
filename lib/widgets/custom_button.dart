@@ -11,7 +11,7 @@ final String text;
       constraints: BoxConstraints.tightFor(width: double.infinity),
 
       child: ElevatedButton(
-        child: Text(text,style: TextStyle(fontSize: 18),),
+        child: Text(text,style: TextStyle(fontSize: 18 ,fontWeight: FontWeight.normal),),
         style: ElevatedButton.styleFrom(
           padding: EdgeInsets.only(top: 17,bottom: 17),
           shape: RoundedRectangleBorder(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:talabat/sign_up/sign_up.dart';
 import 'package:talabat/widgets/custom_button.dart';
 import 'package:talabat/widgets/custom_password_field.dart';
 import 'package:talabat/widgets/custom_text_button.dart';
@@ -64,6 +65,7 @@ class _LoginState extends State<Login> {
                   ),
                   CustomtextButton(
                     text: "Creat an account",
+                    Page: SignUp(),
                   ),
                 ],
               ),
