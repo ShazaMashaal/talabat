@@ -15,8 +15,6 @@ class Splash extends StatelessWidget {
        title: Text('talabat',style: splashTitle,),
       loadingText: Text('"Food delivery platform for expo 2020"',style: splashSupTitle),
       useLoader: false,
-
-
       backgroundColor: Color(0xFFF57C00),
     );
   }

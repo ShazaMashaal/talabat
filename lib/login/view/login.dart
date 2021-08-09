@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:talabat/sign_up/sign_up.dart';
 import 'package:talabat/widgets/custom_button.dart';
 import 'package:talabat/widgets/custom_password_field.dart';
-import 'package:talabat/widgets/custom_text_button.dart';
 import 'package:talabat/widgets/custom_text_form_field.dart';
 
 import '../../const.dart';
@@ -24,7 +23,7 @@ class _LoginState extends State<Login> {
         leading: Icon(Icons.arrow_back, color: Colors.black, size: 33),
         title: Text(
           'Login',
-          style: loginTitle,
+          style: appBarTitle,
         ),
       ),
       body: Padding(
@@ -60,11 +59,23 @@ class _LoginState extends State<Login> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  CustomtextButton(
-                    text: "Forgot password ?",
-                  ),
-                  CustomtextButton(
-                    text: "Creat an account",
+                TextButton(
+                child: Text("Forgot password ?",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Color(0xFF601BC8)),),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SignUp()),
+                );
+              },
+            ),
+                  TextButton(
+                    child: Text("Creat an account",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Color(0xFF601BC8)),),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SignUp()),
+                      );
+                    },
                   ),
                 ],
               ),
