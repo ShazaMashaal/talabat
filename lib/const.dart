@@ -13,7 +13,7 @@ final splashSupTitle=TextStyle(
     fontWeight: FontWeight.bold
 );
 
-final appBarTitle=TextStyle(color: Colors.black,fontSize: 28,fontWeight: FontWeight.w500);
+final appBarTitle =TextStyle(color: Colors.black,fontSize: 28,fontWeight: FontWeight.w500);
 
 class  HeadTitle extends StatelessWidget {
   final String headTitle;

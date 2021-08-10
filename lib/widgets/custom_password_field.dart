@@ -9,6 +9,8 @@ class PasswordTextField extends StatefulWidget {
 class _PasswordTextFieldState extends State<PasswordTextField> {
   bool _isObscure = true;
 
+   TextEditingController controller ;
+
 
   void _toggle() {
     setState(() {
@@ -19,6 +21,12 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+        controller: controller,
+
+        validator: (value){
+      if(value.isEmpty) return 'Empty field!';
+      else if(value.length < 4) return 'Password length must be more than 4 charachters';
+      else return null;},
         obscureText: _isObscure,
         decoration: InputDecoration(
           focusedBorder: UnderlineInputBorder(

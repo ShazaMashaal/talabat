@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:talabat/sign_up/sign_up.dart';
-import 'package:talabat/widgets/custom_button.dart';
+import 'package:talabat/map/map.dart';
+
 import 'package:talabat/widgets/custom_password_field.dart';
 import 'package:talabat/widgets/custom_text_form_field.dart';
 
@@ -12,6 +13,9 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+
+  final formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,6 +41,7 @@ class _LoginState extends State<Login> {
             Padding(
               padding: const EdgeInsets.only(top: 20),
               child: Form(
+                key: formKey,
                 child: Column(
                   children: [
                     CustomTextField(
@@ -48,7 +53,30 @@ class _LoginState extends State<Login> {
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: 61),
-                      child: CustomButton(text: "Login"),
+                      child: ConstrainedBox(
+                        constraints: BoxConstraints.tightFor(width: double.infinity),
+
+                        child: ElevatedButton(
+                          child: Text("Login",style: TextStyle(fontSize: 18 ,fontWeight: FontWeight.normal),),
+                          style: ElevatedButton.styleFrom(
+                            padding: EdgeInsets.only(top: 17,bottom: 17),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8), // <-- Radius
+                            ),
+                            primary: Color(0xFF601BC8),
+                          ),
+
+
+                          onPressed: (){
+                            if (formKey.currentState.validate()) {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => Map()));
+
+                            }
+                          },
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -59,17 +87,29 @@ class _LoginState extends State<Login> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                TextButton(
-                child: Text("Forgot password ?",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Color(0xFF601BC8)),),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SignUp()),
-                );
-              },
-            ),
                   TextButton(
-                    child: Text("Creat an account",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Color(0xFF601BC8)),),
+                    child: Text(
+                      "Forgot password ?",
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF601BC8)),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SignUp()),
+                      );
+                    },
+                  ),
+                  TextButton(
+                    child: Text(
+                      "Creat an account",
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF601BC8)),
+                    ),
                     onPressed: () {
                       Navigator.push(
                         context,
