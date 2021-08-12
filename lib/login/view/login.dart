@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:talabat/forgot_password/view/forgot_password.dart';
 import 'package:talabat/sign_up/sign_up.dart';
 import 'package:talabat/map/map.dart';
 
@@ -96,10 +97,9 @@ class _LoginState extends State<Login> {
                           color: Color(0xFF601BC8)),
                     ),
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => SignUp()),
-                      );
+                      Navigator.pop(context);
+
+
                     },
                   ),
                   TextButton(

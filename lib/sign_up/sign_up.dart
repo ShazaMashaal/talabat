@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:talabat/services/auth_service.dart';
-import 'package:talabat/widgets/custom_button.dart';
 import 'package:talabat/map/map.dart';
-import 'package:provider/provider.dart';
-
-import 'package:talabat/widgets/custom_password_field.dart';
 import 'package:talabat/widgets/custom_text_form_field.dart';
-
 import '../const.dart';
 
 class SignUp extends StatefulWidget {
@@ -144,8 +138,7 @@ class _SignUpState extends State<SignUp> {
                                 final String email=emailController.text.trim();
                                 final String password=passwordController.text.trim();
 
-                                context.read<Authentication>().signup(email,password);
-                                Navigator.push(
+                              Navigator.push(
                                     context,
                                     MaterialPageRoute(builder: (context) => Map()));
 
