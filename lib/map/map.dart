@@ -13,6 +13,7 @@ class _MapState extends State<Map> {
     return Scaffold(
       appBar: AppBar(
         leading: Icon(Icons.search),
+        title: Text("Map"),
       ),
     );
   }

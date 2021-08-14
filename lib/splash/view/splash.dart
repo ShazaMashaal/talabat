@@ -1,6 +1,5 @@
 import 'package:splashscreen/splashscreen.dart';
 import 'package:flutter/material.dart';
-import 'package:talabat/login/view/login.dart';
 import 'package:talabat/login_method/view/login_method.dart';
 
 import '../../const.dart';
@@ -10,7 +9,7 @@ class Splash extends StatelessWidget {
   Widget build(BuildContext context) {
     return SplashScreen(
       seconds: 4,
-      navigateAfterSeconds: Login(),
+      navigateAfterSeconds: LoginMethod(),
       title: Text(
         'talabat',
         style: splashTitle,

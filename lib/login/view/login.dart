@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:talabat/forgot_password/view/forgot_password.dart';
+import 'package:talabat/shared/authentication.dart';
 import 'package:talabat/sign_up/sign_up.dart';
 import 'package:talabat/map/map.dart';
 
-import 'package:talabat/widgets/custom_password_field.dart';
-import 'package:talabat/widgets/custom_text_form_field.dart';
 
 import '../../const.dart';
 
@@ -13,9 +13,19 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-
+  AuthController authController = AuthController();
   final formKey = GlobalKey<FormState>();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  bool _isObscure = true;
 
+
+
+  void _toggle() {
+    setState(() {
+      _isObscure = !_isObscure;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +41,7 @@ class _LoginState extends State<Login> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(19.0),
+        padding: EdgeInsets.all(19.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -39,40 +49,83 @@ class _LoginState extends State<Login> {
               headTitle: "Continue with email",
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 20),
+              padding: EdgeInsets.only(top: 20),
               child: Form(
                 key: formKey,
                 child: Column(
                   children: [
-                    CustomTextField(
-                      hintText: "Email",
+
+                    TextFormField(
+                      validator: (value) {
+                        if (value.isEmpty)
+                          return 'Empty field!';
+                        else if (!value.contains('@'))
+                          return 'missing @!';
+                        else
+                          return null;
+                      },
+                      controller: emailController,
+                      decoration: InputDecoration(
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey[900]),
+                        ),
+                        hintText: 'Email',
+                        hintStyle: TextStyle(fontSize: 18.0),
+                      ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 23),
-                      child: PasswordTextField(),
+                      padding: EdgeInsets.only(top: 23),
+                      child: TextFormField(
+                          controller: passwordController,
+
+                          validator: (value){
+                            if(value.isEmpty) return 'Empty field!';
+                            else if(value.length < 4) return 'Password length must be more than 4 charachters';
+                            else return null;},
+                          obscureText: _isObscure,
+                          decoration: InputDecoration(
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Colors.grey[900]),
+                            ),
+                            hintText: "Password",
+                            hintStyle: TextStyle(fontSize: 18.0),
+                            suffix: TextButton(
+                                style: TextButton.styleFrom(padding: EdgeInsets.all(0),),
+
+                                onPressed: _toggle,
+                                child: Text(_isObscure ? "Show" : "Hide",
+                                  style: TextStyle(fontSize: 18,fontWeight: FontWeight.normal,color: Colors.black),)
+                            ),
+
+                          )
+                      ),
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: 61),
                       child: ConstrainedBox(
-                        constraints: BoxConstraints.tightFor(width: double.infinity),
-
+                        constraints:
+                            BoxConstraints.tightFor(width: double.infinity),
                         child: ElevatedButton(
-                          child: Text("Login",style: TextStyle(fontSize: 18 ,fontWeight: FontWeight.normal),),
+                          child: Text(
+                            "Login",
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.normal),
+                          ),
                           style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.only(top: 17,bottom: 17),
+                            padding: EdgeInsets.only(top: 17, bottom: 17),
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8), // <-- Radius
+                              borderRadius:
+                                  BorderRadius.circular(8), // <-- Radius
                             ),
                             primary: Color(0xFF601BC8),
                           ),
-
-
-                          onPressed: (){
+                          onPressed: () async {
                             if (formKey.currentState.validate()) {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => Map()));
-
+                              final message = await authController.Auth(emailController.text, passwordController.text,"signInWithPassword");
+                              if(message != 'ok')
+                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
+                              else
+                                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Map(),));
                             }
                           },
                         ),
@@ -98,7 +151,8 @@ class _LoginState extends State<Login> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => SignUp()),
+                        MaterialPageRoute(
+                            builder: (context) => ForgotPassword()),
                       );
                     },
                   ),

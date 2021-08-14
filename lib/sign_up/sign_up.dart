@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:talabat/services/auth_service.dart';
-import 'package:talabat/widgets/custom_button.dart';
-import 'package:talabat/map/map.dart';
-import 'package:provider/provider.dart';
-
-import 'package:talabat/widgets/custom_password_field.dart';
+import 'package:talabat/shared/authentication.dart';
 import 'package:talabat/widgets/custom_text_form_field.dart';
+import 'package:talabat/map/map.dart';
 
 import '../const.dart';
 
@@ -20,6 +16,11 @@ class _SignUpState extends State<SignUp> {
   bool _isObscure = true;
 
   TextEditingController passwordController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
+  TextEditingController firstNameController = TextEditingController();
+
+  AuthController authController = AuthController();
+
 
 
   void _toggle() {
@@ -57,20 +58,58 @@ class _SignUpState extends State<SignUp> {
                   key: formKey,
                   child: Column(
                     children: [
-                      CustomTextField(
-                        hintText: "First name",
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 30.0),
-                        child: CustomTextField(
-                          hintText: "Last name",
+                      TextFormField(
+                        validator: (value){
+                          if(value.isEmpty) return 'Empty field!';
+                          else return null;
+                        },
+                        controller: firstNameController,
+                        decoration: InputDecoration(
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey[900]),
+                          ),
+                          hintText: "First name",
+                          hintStyle: TextStyle(fontSize: 18.0),
+
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 30.0),
-                        child: CustomTextField(
-                          hintText: "Email",
+                        child: TextFormField(
+                          validator: (value){
+                            if(value.isEmpty) return 'Empty field!';
+                            else return null;
+                          },
+                          controller: lastNameController,
+                          decoration: InputDecoration(
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Colors.grey[900]),
+                            ),
+                            hintText: "Last name",
+                            hintStyle: TextStyle(fontSize: 18.0),
+
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 30.0),
+                        child: TextFormField(
+                          validator: (value) {
+                            if (value.isEmpty)
+                              return 'Empty field!';
+                            else if (!value.contains('@'))
+                              return 'missing @!';
+                            else
+                              return null;
+                          },
                           controller: emailController,
+                          decoration: InputDecoration(
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Colors.grey[900]),
+                            ),
+                            hintText: 'Email',
+                            hintStyle: TextStyle(fontSize: 18.0),
+                          ),
                         ),
                       ),
                       Padding(
@@ -139,17 +178,13 @@ class _SignUpState extends State<SignUp> {
                             ),
 
 
-                            onPressed: (){
+                            onPressed: ()async {
                               if (formKey.currentState.validate()) {
-                                final String email=emailController.text.trim();
-                                final String password=passwordController.text.trim();
-
-                                context.read<Authentication>().signup(email,password);
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (context) => Map()));
-
-
+                                final message = await authController.Auth(emailController.text, passwordController.text,"signUp");
+                                if(message != 'ok')
+                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
+                                else
+                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Map(),));
                               }
                             },
                           ),
