@@ -183,8 +183,9 @@ class _SignUpState extends State<SignUp> {
                                 final message = await authController.Auth(emailController.text, passwordController.text,"signUp");
                                 if(message != 'ok')
                                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
-                                else
+                                else{
                                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Map(),));
+                              }
                               }
                             },
                           ),

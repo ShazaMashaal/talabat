@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:talabat/shared/shared_prefrences.dart';
 
 class AuthController {
 
@@ -15,8 +16,12 @@ class AuthController {
         },
       ),);
     final data = response.data as Map;
-    if(data.containsKey('idToken'))
+    if(data.containsKey('idToken')){
+      SharedPref.init();
+      SharedPref.setID(data["idToken"]) ;
+
       return 'ok';
+    }
     else
       return data['error'];
   }

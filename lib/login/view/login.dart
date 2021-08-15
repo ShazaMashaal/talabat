@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:talabat/forgot_password/view/forgot_password.dart';
 import 'package:talabat/shared/authentication.dart';
+import 'package:talabat/shared/shared_prefrences.dart';
 import 'package:talabat/sign_up/sign_up.dart';
 import 'package:talabat/map/map.dart';
 
@@ -124,8 +125,12 @@ class _LoginState extends State<Login> {
                               final message = await authController.Auth(emailController.text, passwordController.text,"signInWithPassword");
                               if(message != 'ok')
                                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
-                              else
-                                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Map(),));
+                              else {
+
+                                Navigator.pushReplacement(context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Map(),));
+                              }
                             }
                           },
                         ),

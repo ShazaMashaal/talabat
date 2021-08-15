@@ -27,3 +27,11 @@ class  HeadTitle extends StatelessWidget {
 }
 
 
+final drawerSelectedItem=BoxDecoration(
+      color: Color(0xFF601BC8),
+    borderRadius: BorderRadius.only(topRight: Radius.circular(8),bottomRight: Radius.circular(8) )
+
+
+);
+
+
