@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:talabat/items/drawer_items.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -185,9 +186,118 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
 
+
+
               ],
             ),
           ),
+          Padding(
+            padding: EdgeInsets.only(top:26 ),
+            child: Text(
+              "Popular brands near you",
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            ),
+          ),
+          SizedBox(
+            height: 143,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              padding: EdgeInsets.only(right: 20,top: 20),
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+
+                         Image.asset(
+                          "assets/images/5.PNG",
+                          height: 100,
+                          width: 100,
+                        ),
+                    Text(
+                      "Gad",
+                      style: TextStyle(fontSize: 16),
+                    )
+                  ],
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Image.asset(
+                      "assets/images/6.PNG",
+                      height: 100,
+                      width: 100,
+                    ),
+                    Text("Heart Attack", style: TextStyle(fontSize: 16))
+                  ],
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ClipRRect(
+                        borderRadius: BorderRadius.circular(40),
+                        child: Image.asset(
+                          "assets/images/7.PNG",
+                          height: 100,
+                          width: 100,
+                        )),
+                    Text("Pizza Hut", style: TextStyle(fontSize: 16))
+                  ],
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ClipRRect(
+                        borderRadius: BorderRadius.circular(40),
+                        child: Image.asset(
+                          "assets/images/8.png",
+                          height: 100,
+                          width: 100,
+                        )),
+                    Text("Buffalo Burger", style: TextStyle(fontSize: 16))
+                  ],
+                ),
+
+
+
+              ],
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top:26 ),
+            child: Text(
+              "Groceries",
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            ),
+          ),
+
+          SizedBox(
+            height: 428,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+
+              padding: EdgeInsets.only(right: 20,top: 16),
+              children: [
+                Column(
+                  children: [
+                    Image.asset("assets/images/9.png",width: 336,height: 156,),
+                    // Container(
+                    //   height: 80,
+                    //   child: ListTile(
+                    //     leading: Column(children: [
+                    //       Text("2GO Supermarket")
+                    //     ],),
+                    //
+                    //   ),
+                    // )
+
+                  ],
+                ),
+
+              ],
+            ),
+          )
+
+
 
         ],
       ),
