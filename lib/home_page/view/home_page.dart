@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:talabat/items/drawer_items.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:carousel_pro/carousel_pro.dart';
 import '../../const.dart';
 
 class HomePage extends StatefulWidget {
@@ -190,6 +190,19 @@ class _HomePageState extends State<HomePage> {
 
               ],
             ),
+          ),
+          SizedBox(
+              height:MediaQuery.of(context).size.height/10,
+              child: Carousel(
+                dotPosition: DotPosition.bottomCenter,
+               autoplay: false,
+                dotBgColor: Colors.transparent,
+
+                images: [
+                  AssetImage("assets/images/4.png"),
+                  AssetImage("assets/images/4.png"),
+                ],
+              )
           ),
           Padding(
             padding: EdgeInsets.only(top:26 ),
