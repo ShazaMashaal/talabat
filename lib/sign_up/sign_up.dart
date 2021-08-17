@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:talabat/home_page/view/home_page.dart';
 import 'package:talabat/shared/authentication.dart';
 import 'package:talabat/widgets/custom_text_form_field.dart';
 import 'package:talabat/map/map.dart';
@@ -184,7 +185,7 @@ class _SignUpState extends State<SignUp> {
                                 if(message != 'ok')
                                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
                                 else{
-                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Map(),));
+                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage(),));
                               }
                               }
                             },

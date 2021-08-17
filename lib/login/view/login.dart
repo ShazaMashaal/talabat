@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:talabat/forgot_password/view/forgot_password.dart';
+import 'package:talabat/home_page/view/home_page.dart';
 import 'package:talabat/shared/authentication.dart';
 import 'package:talabat/shared/shared_prefrences.dart';
 import 'package:talabat/sign_up/sign_up.dart';
@@ -129,7 +130,7 @@ class _LoginState extends State<Login> {
 
                                 Navigator.pushReplacement(context,
                                     MaterialPageRoute(
-                                      builder: (context) => Map(),));
+                                      builder: (context) => HomePage(),));
                               }
                             }
                           },

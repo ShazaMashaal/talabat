@@ -132,188 +132,150 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      body: ListView(
+      body: SingleChildScrollView(
         padding: EdgeInsets.only(top: 20.0,left: 20),
-        children: [
-          Text(
-            "What would you like to order, Ahmed?",
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(
-            height: 180,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: Image.asset(
-                          "assets/images/1.png",
-                          height: 150,
-                          width: 160,
-                        )),
-                    Text(
-                      "Food",
-                      style: TextStyle(fontSize: 20),
-                    )
-                  ],
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-
-                       Image.asset(
-                          "assets/images/2.png",
-                          height: 150,
-                          width: 160,
-                        ),
-                    Text("Grocries", style: TextStyle(fontSize: 20))
-                  ],
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ClipRRect(
-                        borderRadius: BorderRadius.circular(40),
-                        child: Image.asset(
-                          "assets/images/3.png",
-                          height: 150,
-                          width: 160,
-                        )),
-                    Text("Sweet", style: TextStyle(fontSize: 20))
-                  ],
-                ),
-
-
-
-              ],
-            ),
-          ),
-          SizedBox(
-              height:MediaQuery.of(context).size.height/10,
-              child: Carousel(
-                dotPosition: DotPosition.bottomCenter,
-               autoplay: false,
-                dotBgColor: Colors.transparent,
-
-                images: [
-                  AssetImage("assets/images/4.png"),
-                  AssetImage("assets/images/4.png"),
-                ],
-              )
-          ),
-          Padding(
-            padding: EdgeInsets.only(top:26 ),
-            child: Text(
-              "Popular brands near you",
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "What would you like to order, Ahmed?",
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
             ),
-          ),
-          SizedBox(
-            height: 143,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              padding: EdgeInsets.only(right: 20,top: 20),
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            SizedBox(
+              height: 180,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: Image.asset(
+                            "assets/images/1.png",
+                            height: 150,
+                            width: 160,
+                            fit: BoxFit.cover,
+                          )),
+                      Text(
+                        "Food",
+                        style: TextStyle(fontSize: 20),
+                      )
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+
+                         Image.asset(
+                            "assets/images/2.png",
+                            height: 150,
+                            width: 160,
+                          ),
+                      Text("Grocries", style: TextStyle(fontSize: 20))
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      ClipRRect(
+                          borderRadius: BorderRadius.circular(40),
+                          child: Image.asset(
+                            "assets/images/3.png",
+                            height: 150,
+                            width: 160,
+                          )),
+                      Text("Sweet", style: TextStyle(fontSize: 20))
+                    ],
+                  ),
+
+
+
+                ],
+              ),
+            ),
+            Container(
+                margin: const EdgeInsets.only(right:18.0),
+                height:MediaQuery.of(context).size.height/5,
+                child: Carousel(
+                  dotPosition: DotPosition.bottomCenter,
+                 autoplay: false,
+                  dotBgColor: Colors.transparent,
+                  images: [
+                    AssetImage("assets/images/4.png"),
+                    AssetImage("assets/images/4.png"),
+                  ],
+                )
+            ),
+            Padding(
+              padding: EdgeInsets.only(top:26 ),
+              child: Text(
+                "Popular brands near you",
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              ),
+            ),
+            Container(
+              height: 143,
+              padding: EdgeInsets.only(right: 20,left: 20),
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  popularItem(title: 'Gad',img: "assets/images/5.PNG"),
+                  popularItem(title: 'Heart Attack',img: "assets/images/6.PNG"),
+                  popularItem(title: 'Pizza Hut',img: "assets/images/7.PNG"),
+                  // popularItem(title: 'Buffalo Burger',img: "assets/images/8.PNG"),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top:26 ),
+              child: Text(
+                "Groceries",
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              ),
+            ),
+            SizedBox(
+              height: 428,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+
+                padding: EdgeInsets.only(right: 20,top: 16),
+                children: [
+                  Column(
+                    children: [
+                      ClipRRect(
+                          borderRadius: BorderRadius.circular(26),
+                          child: Image.asset("assets/images/9.png",width: 336,height: 156,)),
+
+                    ],
+                  ),
+
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+
+
+  Column popularItem({img,title}) {
+    return Column(
+                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
 
                          Image.asset(
-                          "assets/images/5.PNG",
+                          img,
                           height: 100,
                           width: 100,
                         ),
                     Text(
-                      "Gad",
+                      title,
                       style: TextStyle(fontSize: 16),
                     )
                   ],
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Image.asset(
-                      "assets/images/6.PNG",
-                      height: 100,
-                      width: 100,
-                    ),
-                    Text("Heart Attack", style: TextStyle(fontSize: 16))
-                  ],
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ClipRRect(
-                        borderRadius: BorderRadius.circular(40),
-                        child: Image.asset(
-                          "assets/images/7.PNG",
-                          height: 100,
-                          width: 100,
-                        )),
-                    Text("Pizza Hut", style: TextStyle(fontSize: 16))
-                  ],
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ClipRRect(
-                        borderRadius: BorderRadius.circular(40),
-                        child: Image.asset(
-                          "assets/images/8.png",
-                          height: 100,
-                          width: 100,
-                        )),
-                    Text("Buffalo Burger", style: TextStyle(fontSize: 16))
-                  ],
-                ),
-
-
-
-              ],
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top:26 ),
-            child: Text(
-              "Groceries",
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-            ),
-          ),
-
-          SizedBox(
-            height: 428,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-
-              padding: EdgeInsets.only(right: 20,top: 16),
-              children: [
-                Column(
-                  children: [
-                    Image.asset("assets/images/9.png",width: 336,height: 156,),
-                    // Container(
-                    //   height: 80,
-                    //   child: ListTile(
-                    //     leading: Column(children: [
-                    //       Text("2GO Supermarket")
-                    //     ],),
-                    //
-                    //   ),
-                    // )
-
-                  ],
-                ),
-
-              ],
-            ),
-          )
-
-
-
-        ],
-      ),
-    );
+                );
   }
 }

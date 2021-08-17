@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:talabat/home_page/view/home_page.dart';
 import 'package:talabat/shared/shared_prefrences.dart';
+import 'package:talabat/splash/view/splash.dart';
 
-void main() {
+void main() async{
 
   WidgetsFlutterBinding.ensureInitialized();
-  SharedPref.init();
+   await SharedPref.init();
 
   runApp(MyApp());
 }
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      home: Splash(),
     );
   }
 }
